@@ -1,5 +1,5 @@
 git add -A
-git commit -m "autogit.sh -> add | README: image link -> fixed"
+git commit -m "Next Topic: Understanding the Need for Python’s Pretty Print"
 git push
 git status
 clear
