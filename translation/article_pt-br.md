@@ -31,7 +31,7 @@
 
 ```
   ° Entenda porque o módulo pprint é necessário
-  ° Aprenda a usar pprint (), PrettyPrinter e seus parâmetros
+  ° Aprenda a usar pprint(), PrettyPrinter e seus parâmetros
   ° Ser capaz de criar sua própria instância de PrettyPrinter
   ° Salvar saída de string formatada em vez de imprimi-la   
   ° Imprimir e reconhecer estruturas de dados recursivas
@@ -45,7 +45,7 @@
 
 ### O módulo Python pprinté útil em muitas situações. É útil ao fazer solicitações de API, lidar com [JSON files](https://realpython.com/python-json/) ou lidar com dados complicados e aninhados. Você provavelmente descobrirá que usar a função `print()` normal não é adequado para explorar seus dados e [debug](https://realpython.com/python-debugging-pdb/) seu aplicativo com eficiência. Quando você usa print() com [dictionaries](https://realpython.com/python-dicts/) e [lists](https://realpython.com/python-lists-tuples/), a saída não contém novas linhas.
 
-### Antes de começar a explorar pprint, você primeiro urllibfará uma solicitação para obter alguns dados. Você fará uma solicitação ao [{JSON} Placeholder](https://jsonplaceholder.typicode.com/) para algumas informações do usuário simulado. A primeira coisa a fazer é fazer a GETsolicitação HTTP e colocar a resposta em um dicionário:
+### Antes de começar a explorar pprint, você primeiro urllibfará uma solicitação para obter alguns dados. Você fará uma solicitação ao [{JSON} Placeholder](https://jsonplaceholder.typicode.com/) para algumas informações do usuário simulado. A primeira coisa a fazer é fazer a `solicitação HTTP GET` e colocar a resposta em um dicionário:
 
 ```Python
 import json
@@ -79,3 +79,94 @@ for i in users:
 ### Claro, você poderia escrever uma função que use [recursão](https://realpython.com/python-recursion/) para encontrar uma maneira de imprimir tudo. Infelizmente, você provavelmente encontrará alguns casos extremos em que isso não funcionará. Você pode até mesmo se pegar escrevendo um módulo inteiro de funções apenas para se familiarizar com a estrutura dos dados!
 
 ### Entre no `pprint`módulo!
+
+## Trabalhando com `pprint`
+
+### `pprint` é um módulo Python feito para imprimir estruturas de dados de uma maneira bonita. Faz muito tempo que faz parte da biblioteca padrão do Python, portanto, não é necessário instalá-lo separadamente. Tudo que você precisa fazer é importar sua `pprint()` função:
+
+```Python
+from pprint import pprint
+```
+
+### Então, em vez de seguir a `print(users)` abordagem normal como fez no exemplo acima, você pode chamar sua nova função favorita para tornar a saída bonita:
+
+```Python
+pprint(users)
+```
+
+### Esta função é impressa `users-` mas de uma maneira bonita e nova e aprimorada:
+
+```Python
+pprint(users)
+
+"""
+Output:
+
+[{'address': {'city': 'Gwenborough',
+ 'geo': {'lat': '-37.3159', 'lng': '81.1496'},
+ 'street': 'Kulas Light',
+ 'suite': 'Apt. 556',
+ 'zipcode': '92998-3874'},
+ 'company': {'bs': 'harness real-time e-markets',
+ 'catchPhrase': 'Multi-layered client-server neural-net',
+ 'name': 'Romaguera-Crona'},
+ 'email': 'Sincere@april.biz',
+ 'id': 1,
+ 'name': 'Leanne Graham',
+ 'phone': '1-770-736-8031 x56442',
+ 'username': 'Bret',
+ 'website': 'hildegard.org'},
+ {'address': {'city': 'Wisokyburgh',
+ 'geo': {'lat': '-43.9509', 'lng': '-34.4618'},
+ 'street': 'Victor Plains',
+ 'suite': 'Suite 879',
+ 'zipcode': '90566-7771'},
+ 'company': {'bs': 'synergize scalable supply-chains',
+ 'catchPhrase': 'Proactive didactic contingency',
+ 'name': 'Deckow-Crist'},
+ 'email': 'Shanna@melissa.tv',
+ 'id': 2,
+ 'name': 'Ervin Howell',
+ 'phone': '010-692-6593 x09125',
+ 'username': 'Antonette',
+ 'website': 'anastasia.net'},
+
+ ...
+
+ {'address': {'city': 'Lebsackbury',
+ 'geo': {'lat': '-38.2386', 'lng': '57.2232'},
+ 'street': 'Kattie Turnpike',
+ 'suite': 'Suite 198',
+ 'zipcode': '31428-2261'},
+ 'company': {'bs': 'target end-to-end models',
+ 'catchPhrase': 'Centralized empowering task-force',
+ 'name': 'Hoeger LLC'},
+ 'email': 'Rey.Padberg@karina.biz',
+ 'id': 10,
+ 'name': 'Clementina DuBuque',
+ 'phone': '024-648-3804',
+ 'username': 'Moriah.Stanton',
+ 'website': 'ambrose.net'}]
+"""
+```
+
+### Quão belo! As teclas dos dicionários são ainda recuadas visualmente! Essa saída torna muito mais simples verificar e analisar visualmente as estruturas de dados.
+
+## OBS: a saída que você verá será mais longa se você executar o código por conta própria. Este bloco de código trunca a saída para facilitar a leitura.
+
+### Se você gosta de digitar o mínimo possível, ficará satisfeito em saber que `pprint()` tem um alias `pp()`:
+
+```Python
+from pprint import pp
+pp(users)
+```
+
+### `pp()` é apenas um invólucro `pprint()` e se comporta exatamente da mesma maneira.
+
+```
+Nota: Python incluiu este alias desde a versão 3.8.0 alpha 2
+```
+
+### No entanto, mesmo a saída padrão pode ser muita informação para digitalizar no início. Talvez tudo o que você realmente queira é verificar se está lidando com uma lista de objetos simples. Para isso, você vai querer ajustar um pouco a saída.
+
+### Para essas situações, existem vários parâmetros que você pode transmitir pprint()para tornar bonitas até as estruturas de dados mais concisas.
