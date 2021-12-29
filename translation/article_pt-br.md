@@ -170,3 +170,124 @@ Nota: Python incluiu este alias desde a versão 3.8.0 alpha 2
 ### No entanto, mesmo a saída padrão pode ser muita informação para digitalizar no início. Talvez tudo o que você realmente queira é verificar se está lidando com uma lista de objetos simples. Para isso, você vai querer ajustar um pouco a saída.
 
 ### Para essas situações, existem vários parâmetros que você pode transmitir pprint()para tornar bonitas até as estruturas de dados mais concisas.
+
+## Explorando Parâmetros Opcionais de `pprint()`
+
+### Nesta seção, você aprenderá sobre todos os parâmetros disponíveis para `pprint()`. Existem sete parâmetros que você pode usar para configurar sua linda impressora Pythonic. Você não precisa usar todos eles e alguns serão mais úteis do que outros. O que você achará mais valioso provavelmente será `depth`.
+
+## _Resumindo seus dados: depth_
+
+### Um dos parâmetros mais úteis para brincar é `depth`. O comando Python a seguir imprimirá apenas o conteúdo completo `users` se a estrutura de dados estiver igual ou inferior à profundidade especificada - tudo ao mesmo tempo em que mantém as coisas bonitas, é claro. O conteúdo de estruturas de dados mais profundas é substituído por três pontos:
+
+```Python
+pprint(users, depth=1)
+
+# Output: [{...}, {...}, {...}, {...}, {...}, {...}, {...}, {...}, {...}, {...}]
+```
+
+### Agora você pode ver imediatamente que esta é realmente uma lista de dicionários. Para explorar mais a estrutura de dados, você pode aumentar a profundidade em um nível, o que imprimirá todas as chaves de nível superior dos dicionários em `users`:
+
+```Python
+pprint(users, depth=2)
+
+"""
+Output:
+
+[{'address': {...},
+ 'company': {...},
+ 'email': 'Sincere@april.biz',
+ 'id': 1,
+ 'name': 'Leanne Graham',
+ 'phone': '1-770-736-8031 x56442',
+ 'username': 'Bret',
+ 'website': 'hildegard.org'},
+ {'address': {...},
+ 'company': {...},
+ 'email': 'Shanna@melissa.tv',
+ 'id': 2,
+ 'name': 'Ervin Howell',
+ 'phone': '010-692-6593 x09125',
+ 'username': 'Antonette',
+ 'website': 'anastasia.net'},
+
+ ...
+
+ {'address': {...},
+ 'company': {...},
+ 'email': 'Rey.Padberg@karina.biz',
+ 'id': 10,
+ 'name': 'Clementina DuBuque',
+ 'phone': '024-648-3804',
+ 'username': 'Moriah.Stanton',
+ 'website': 'ambrose.net'}]
+"""
+```
+
+### Agora você pode verificar rapidamente se todos os dicionários compartilham suas chaves de nível superior. Esta é uma observação valiosa a se fazer, especialmente se você estiver encarregado de desenvolver um aplicativo que consome dados como este.
+
+## _Dando espaço aos seus dados: indent_
+
+### O `indent` parâmetro controla o quão recuado será cada nível da representação bem impressa na saída. O recuo padrão é justo 1, o que se traduz em um caractere de espaço:
+
+```Python
+pprint(users[0], depth=1)
+
+"""
+Output:
+
+{'address': {...},
+ 'company': {...},
+ 'email': 'Sincere@april.biz',
+ 'id': 1,
+ 'name': 'Leanne Graham',
+ 'phone': '1-770-736-8031 x56442',
+ 'username': 'Bret',
+ 'website': 'hildegard.org'}
+"""
+
+pprint(users[0], depth=1, indent=4)
+
+"""
+Output:
+
+{ 'address': {...},
+ 'company': {...},
+ 'email': 'Sincere@april.biz',
+ 'id': 1,
+ 'name': 'Leanne Graham',
+ 'phone': '1-770-736-8031 x56442',
+ 'username': 'Bret',
+ 'website': 'hildegard.org'}
+"""
+```
+
+### A parte mais importante do comportamento de recuo do `pprint()`é manter todas as teclas alinhadas visualmente. A quantidade de indentação aplicada depende do `indent` parâmetro e de onde está a chave.
+
+### Como não há aninhamento nos exemplos acima, a quantidade de indentação é baseada totalmente no `indent` parâmetro. Em ambos os exemplos, observe como a chave de abertura ({) é contada como uma unidade de recuo para a primeira chave. No primeiro exemplo, a aspa simples de abertura da primeira chave vem logo depois, {sem nenhum espaço entre eles, porque o recuo está definido como 1.
+
+### Quando há aninhamento, no entanto, o recuo é aplicado ao primeiro elemento em linha e, a `pprint()` seguir, mantém todos os elementos seguintes alinhados com o primeiro. Portanto, se você definir seu `indent` como 4 ao imprimir `users`, o primeiro elemento será recuado em quatro caracteres, enquanto os elementos aninhados serão recuados em mais de oito caracteres porque o recuo começa no final da primeira chave:
+
+```Python
+pprint(users[0], depth=2, indent=4)
+
+"""
+Output:
+
+{   'address': { 'city': 'Gwenborough',
+ 'geo': {...},
+ 'street': 'Kulas Light',
+ 'suite': 'Apt. 556',
+ 'zipcode': '92998-3874'},
+ 'company': { 'bs': 'harness real-time e-markets',
+ 'catchPhrase': 'Multi-layered client-server neural-net',
+ 'name': 'Romaguera-Crona'},
+ 'email': 'Sincere@april.biz',
+ 'id': 1,
+ 'name': 'Leanne Graham',
+ 'phone': '1-770-736-8031 x56442',
+ 'username': 'Bret',
+ 'website': 'hildegard.org'}
+"""
+```
+
+### Esta é apenas outra parte do _beleza_ em Python `pprint()`!

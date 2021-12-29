@@ -11,3 +11,13 @@ users = json.loads(json_response)
 pprint(users)
 
 pp(users)
+
+pprint(users, depth=1)
+
+pprint(users, depth=2)
+
+pprint(users[0], depth=1)
+
+pprint(users[0], depth=1, indent=4)
+
+pprint(users[0], depth=2, indent=4)
