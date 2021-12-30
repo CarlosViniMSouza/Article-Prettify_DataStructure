@@ -41,3 +41,7 @@ with open("output.txt", mode="w") as file_object:
 pprint(users[0], depth=1)
 
 pprint(users[0], depth=1, sort_dicts=False)
+
+number_list = [123456789, 10000000000000]
+
+pprint(number_list, underscore_numbers=True)

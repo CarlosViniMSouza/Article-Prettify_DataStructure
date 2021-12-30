@@ -485,3 +485,20 @@ Output:
 ### A menos que você defina `sort_dicts` como `False`, o Python `pprint()` classifica as chaves em ordem alfabética. Ele mantém a saída dos dicionários consistente, legível e - bem - bonita!
 
 ### Quando `pprint()` foi implementado pela primeira vez, os dicionários eram desordenados. Sem ordenar as chaves em ordem alfabética, as chaves de um dicionário poderiam teoricamente diferir a cada impressão.
+
+## Enfeitar seus números: underscore_numbers
+
+### O `underscore_numbers` parâmetro é um recurso introduzido no [Python 3.10](https://realpython.com/python310-new-features/) que torna os números longos mais legíveis. Considerando que o exemplo que você está usando até agora não contém nenhum número longo, você precisará de um novo exemplo para testá-lo:
+
+```python
+number_list = [123456789, 10000000000000]
+
+pprint(number_list, underscore_numbers=True)
+# Output: [123_456_789, 10_000_000_000_000]
+```
+
+### Se você tentou executar esta chamada para `pprint()` e obteve um erro, não está sozinho. Em outubro de 2021, esse argumento não funcionava ao ligar `pprint()` diretamente. A comunidade Python percebeu isso rapidamente, e isso [foi corrigido](https://github.com/python/cpython/pull/29133) no [lançamento de correção de bug 3.10.1](https://www.python.org/dev/peps/pep-0619/#bugfix-releases) de dezembro de 2021. O pessoal da Python se preocupa com sua linda impressora! Eles provavelmente já terão corrigido isso no momento em que você estiver lendo este tutorial.
+
+### Se `underscore_numbers` não funcionar quando você ligar `pprint()` diretamente e você realmente quiser números bonitos, há uma solução alternativa: quando você cria seu próprio `PrettyPrinter` objeto, este parâmetro deve funcionar exatamente como no exemplo acima.
+
+### A seguir, você aprenderá a criar um `PrettyPrinter` objeto.
