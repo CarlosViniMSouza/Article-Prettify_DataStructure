@@ -621,3 +621,22 @@ pprint(A)
 ### Enquanto o regular do Python `print()` apenas abrevia a saída, `pprint()` o notifica explicitamente sobre a recursão e também adiciona o ID do dicionário.
 
 ### Se quiser explorar por que essa estrutura é recursiva, você pode aprender mais sobre [passagem por referência](https://realpython.com/python-pass-by-reference/).
+
+## Conclusão
+
+### Você explorou o uso principal do módulo `pprint` em Python e algumas maneiras de trabalhar com `pprint()` e `PrettyPrinter`. Você descobrirá que `pprint()` é especialmente útil sempre que estiver desenvolvendo algo que lida com estruturas de dados complexas. Talvez você esteja desenvolvendo um aplicativo que usa uma API desconhecida. Talvez você tenha um data warehouse cheio de arquivos JSON profundamente aninhados. Todas essas situações `pprint` podem ser úteis.
+
+### Neste tutorial, você aprendeu como:
+
+```
+    ° Importar pprint para usar em seus programas
+    ° Use pprint()no lugar do regularprint()
+    ° Compreenda todos os parâmetros que você pode usar para personalizar sua saída bem impressa
+    ° Obtenha a saída formatada como uma string antes de imprimi-la
+    ° Crie uma instância personalizada de PrettyPrinter
+    ° Reconhecer estruturas de dados recursivas e como pprint()as manipula
+```
+
+### Para ajudá-lo a se familiarizar com a função e os parâmetros, você usou um exemplo de estrutura de dados que representa alguns usuários. Você também explorou algumas situações em que pode usar `pprint()`.
+  
+### Parabéns! Agora você está melhor equipado para lidar com dados complexos usando o módulo `pprint` do Python.
