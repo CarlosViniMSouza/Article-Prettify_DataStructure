@@ -430,3 +430,17 @@ Output:
 ```Nota: Cuidado, pois definir a largura para menos de sete caracteres - o que, neste caso, é equivalente à [{...},saída - parece ignorar o depthargumento completamente e pprint()acaba imprimindo tudo sem dobrar. Isso foi relatado como bug # 45611 .```
 
 ### `compact` é útil para sequências longas com elementos curtos que, de outra forma, ocupariam muitas linhas e tornariam a saída menos legível.
+
+## Direcionando sua saída: stream
+
+### O `stream` parâmetro se refere à saída de `pprint()`. Por padrão, ele vai para o mesmo lugar que `print()` vai. Especificamente, ele vai para [sys.stdout](https://docs.python.org/3/library/sys.html#sys.stdout), que na verdade é um [objeto de arquivo](https://docs.python.org/3/glossary.html#term-file-object) em Python. No entanto, você pode redirecionar isso para qualquer objeto de arquivo, da mesma forma que pode com `print()`:
+
+```python
+# OBS.: Para funcionar, você precisa de 1 arquivo formato .txt
+with open("output.txt", mode="w") as file_object:
+    pprint(users, stream=file_object)
+```
+
+### Aqui, você cria um objeto de arquivo com [`open()`](https://docs.python.org/3/library/functions.html#open) e, em seguida, define o `stream` parâmetro `pprint()` para esse objeto de arquivo. Se você abrir o arquivo `output.txt`, verá que imprimiu bem tudos os `users` dele.
+
+### Python tem seu próprio [módulo de registro](https://realpython.com/python-logging/). No entanto, você também pode usar `pprint()` para enviar saídas bonitas para arquivos e fazer com que funcionem como logs, se preferir.
