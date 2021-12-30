@@ -21,3 +21,9 @@ pprint(users[0], depth=1)
 pprint(users[0], depth=1, indent=4)
 
 pprint(users[0], depth=2, indent=4)
+
+pprint(users[0])
+
+pprint(users[0], width=160)
+
+pprint(users[0], width=500)

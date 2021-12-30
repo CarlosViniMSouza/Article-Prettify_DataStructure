@@ -291,3 +291,97 @@ Output:
 ```
 
 ### Esta é apenas outra parte do _beleza_ em Python `pprint()`!
+
+## Limitando os comprimentos das linhas: width
+
+### Por padrão, `pprint()` produzirá apenas até oitenta caracteres por linha. Você pode personalizar esse valor passando um argumento `width`. `pprint()` fará um esforço para ajustar o conteúdo em uma linha. Se o conteúdo de uma estrutura de dados ultrapassar esse limite, ele imprimirá todos os elementos da estrutura de dados atual em uma nova linha:
+
+```Python
+pprint(users[0])
+
+"""
+Output:
+
+{'address': {'city': 'Gwenborough',
+ 'geo': {'lat': '-37.3159', 'lng': '81.1496'},
+ 'street': 'Kulas Light',
+ 'suite': 'Apt. 556',
+ 'zipcode': '92998-3874'},
+ 'company': {'bs': 'harness real-time e-markets',
+ 'catchPhrase': 'Multi-layered client-server neural-net',
+ 'name': 'Romaguera-Crona'},
+ 'email': 'Sincere@april.biz',
+ 'id': 1,
+ 'name': 'Leanne Graham',
+ 'phone': '1-770-736-8031 x56442',
+ 'username': 'Bret',
+ 'website': 'hildegard.org'}
+"""
+```
+
+### Quando você deixa a largura padrão de oitenta caracteres, o dicionário `users[0]['address']['geo']` contém apenas um `'lat'` e um `'lng'` atributo. Isso significa que a soma do recuo e o número de caracteres necessários para imprimir o dicionário, incluindo os espaços entre eles, resulta em menos de oitenta caracteres. Uma vez que tem menos de oitenta caracteres, a largura padrão, `pprint()` coloca tudo em uma linha.
+
+### No entanto, o dicionário em `users[0]['company']` iria ultrapassar a largura padrão, então `pprint()` coloca cada chave em uma nova linha. Isso é verdade para dicionários, listas, tuplas e conjuntos:
+
+```Python
+pprint(users[0], width=160)
+
+"""
+Output:
+
+{'address': {'city': 'Gwenborough', 'geo': {'lat': '-37.3159', 'lng': '81.1496'}, 'street': 'Kulas Light', 'suite': 'Apt. 556', 'zipcode': '92998-3874'},
+ 'company': {'bs': 'harness real-time e-markets', 'catchPhrase': 'Multi-layered client-server neural-net', 'name': 'Romaguera-Crona'},
+ 'email': 'Sincere@april.biz',
+ 'id': 1,
+ 'name': 'Leanne Graham',
+ 'phone': '1-770-736-8031 x56442',
+ 'username': 'Bret',
+ 'website': 'hildegard.org'}
+"""
+```
+
+### Se você definir a largura com um valor grande 160, como , todos os dicionários aninhados caberão em uma linha. Você pode até levar isso a extremos e usar um valor enorme como 500, que, neste exemplo, imprime todo o dicionário em uma linha:
+
+```Python
+pprint(users[0], width=500)
+
+# Output: {'address': {'city': 'Gwenborough', 'geo': {'lat': '-37.3159', 'lng': '81.1496'}, 'street': 'Kulas Light', 'suite': 'Apt. 556', 'zipcode': '92998-3874'}, 'company': {'bs': 'harness real-time e-markets', 'catchPhrase': 'Multi-layered client-server neural-net', 'name': 'Romaguera-Crona'}, 'email': 'Sincere@april.biz', 'id': 1, 'name': 'Leanne Graham', 'phone': '1-770-736-8031 x56442', 'username': 'Bret', 'website': 'hildegard.org'}
+```
+
+### Aqui, você obtém os efeitos da configuração `width` para um valor relativamente alto. Você pode ir para o outro lado e definir `width` um valor baixo, como 1. No entanto, o principal efeito que isso terá é garantir que cada estrutura de dados exiba seus componentes em linhas separadas. Você ainda obterá o recuo visual que alinha os componentes:
+
+```Python
+pprint(users[0], width=5)
+
+"""
+Output:
+
+{'address': {'city': 'Gwenborough',
+ 'geo': {'lat': '-37.3159',
+ 'lng': '81.1496'},
+ 'street': 'Kulas '
+ 'Light',
+ 'suite': 'Apt. '
+ '556',
+ 'zipcode': '92998-3874'},
+ 'company': {'bs': 'harness '
+ 'real-time '
+ 'e-markets',
+ 'catchPhrase': 'Multi-layered '
+ 'client-server '
+ 'neural-net',
+ 'name': 'Romaguera-Crona'},
+ 'email': 'Sincere@april.biz',
+ 'id': 1,
+ 'name': 'Leanne '
+ 'Graham',
+ 'phone': '1-770-736-8031 '
+ 'x56442',
+ 'username': 'Bret',
+ 'website': 'hildegard.org'}
+"""
+```
+
+### É difícil fazer com que `pprint()` a impressão de Python seja feia. Fará tudo o que puder para ser bonita!
+
+### Neste exemplo, além de aprender sobre width, você também está explorando como a impressora divide longas linhas de texto. Observe como `users[0]["company"]["catchPhrase"]`, que foi inicialmente `'Multi-layered client-server neural-net'`, foi dividido em cada espaço. A impressora evita dividir essa string no meio da palavra porque isso dificultaria a leitura.
