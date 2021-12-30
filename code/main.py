@@ -27,3 +27,9 @@ pprint(users[0])
 pprint(users[0], width=160)
 
 pprint(users[0], width=500)
+
+pprint(users, depth=1)
+
+pprint(users, depth=1, width=40)
+
+pprint(users, depth=1, width=40, compact=True)

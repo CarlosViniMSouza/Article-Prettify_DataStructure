@@ -385,3 +385,48 @@ Output:
 ### É difícil fazer com que `pprint()` a impressão de Python seja feia. Fará tudo o que puder para ser bonita!
 
 ### Neste exemplo, além de aprender sobre width, você também está explorando como a impressora divide longas linhas de texto. Observe como `users[0]["company"]["catchPhrase"]`, que foi inicialmente `'Multi-layered client-server neural-net'`, foi dividido em cada espaço. A impressora evita dividir essa string no meio da palavra porque isso dificultaria a leitura.
+
+## Apertando suas longas sequências: compact
+
+### Você pode pensar que `compact` se refere ao comportamento explorado na seção sobre `width-` isto é, se `compact` faz as estruturas de dados aparecerem em uma linha ou em linhas separadas. No entanto, `compact` só afeta a saída de uma vez por linha vai _ao longo_ do width.
+
+```Nota: compact afeta apenas a saída de sequências: listas, conjuntos e tuplas, e não dicionários. Isso é intencional, embora não esteja claro por que essa decisão foi tomada. Há uma discussão em andamento sobre isso no Python Issue # 34798.```
+
+### Se `compact` for `True`, a saída será quebrada na próxima linha. O comportamento padrão é que cada elemento apareça em sua própria linha se a estrutura de dados for maior que a largura:
+
+```python
+pprint(users, depth=1)
+# Output: [{...}, {...}, {...}, {...}, {...}, {...}, {...}, {...}, {...}, {...}]
+
+pprint(users, depth=1, width=40)
+
+"""
+Output:
+
+[{...},
+ {...},
+ {...},
+ {...},
+ {...},
+ {...},
+ {...},
+ {...},
+ {...},
+ {...}]
+"""
+
+pprint(users, depth=1, width=40, compact=True)
+
+"""
+Output:
+
+[{...}, {...}, {...}, {...}, {...},
+ {...}, {...}, {...}, {...}, {...}]
+"""
+```
+
+### A impressão bonita desta lista usando as configurações padrão imprime a versão abreviada em uma linha. Limitando-se `width` a 40 caracteres, você força `pprint()` a saída de todos os elementos da lista em linhas separadas. Se você definir `compact=True`, a lista terá quarenta caracteres e será mais compacta do que pareceria normalmente.
+
+```Nota: Cuidado, pois definir a largura para menos de sete caracteres - o que, neste caso, é equivalente à [{...},saída - parece ignorar o depthargumento completamente e pprint()acaba imprimindo tudo sem dobrar. Isso foi relatado como bug # 45611 .```
+
+### `compact` é útil para sequências longas com elementos curtos que, de outra forma, ocupariam muitas linhas e tornariam a saída menos legível.
