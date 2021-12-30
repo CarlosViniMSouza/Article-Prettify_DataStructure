@@ -502,3 +502,59 @@ pprint(number_list, underscore_numbers=True)
 ### Se `underscore_numbers` não funcionar quando você ligar `pprint()` diretamente e você realmente quiser números bonitos, há uma solução alternativa: quando você cria seu próprio `PrettyPrinter` objeto, este parâmetro deve funcionar exatamente como no exemplo acima.
 
 ### A seguir, você aprenderá a criar um `PrettyPrinter` objeto.
+
+## Criação de um `PrettyPrinter` objeto personalizado
+
+### É possível criar uma instância de `PrettyPrinter` que tenha os padrões que você definiu. Depois de ter essa nova instância de seu `PrettyPrinter` objeto personalizado , você pode usá-la chamando o `.pprint()`método na `PrettyPrinter` instância:
+
+```python
+from pprint import PrettyPrinter
+custom_printer = PrettyPrinter(
+    indent=4,
+    width=100,
+    depth=2,
+    compact=True,
+    sort_dicts=False,
+    underscore_numbers=True
+)
+
+custom_printer.pprint(users[0])
+
+"""
+Output:
+
+{   'id': 1,
+    'name': 'Leanne Graham',
+    'username': 'Bret',
+    'email': 'Sincere@april.biz',
+    'address': {   'street': 'Kulas Light',
+                   'suite': 'Apt. 556',
+                   'city': 'Gwenborough',
+                   'zipcode': '92998-3874',
+                   'geo': {...}},
+    'phone': '1-770-736-8031 x56442',
+    'website': 'hildegard.org',
+    'company': {   'name': 'Romaguera-Crona',
+                   'catchPhrase': 'Multi-layered client-server neural-net',
+                   'bs': 'harness real-time e-markets'}}
+"""
+
+number_list = [123456789, 10000000000000]
+
+custom_printer.pprint(number_list)
+# Output: [123_456_789, 10_000_000_000_000]
+```
+
+### Com esses comandos, você:
+
+```
+    ° Importado PrettyPrinter , que é uma definição de classe
+    ° Criou uma nova instância dessa classe com certos parâmetros
+    ° Impresso o primeiro usuário emusers
+    ° Definiu uma lista de alguns números longos
+    ° Impressonumber_list , que também demonstra underscore_numbersem ação
+```
+
+### Observe que os argumentos que você passou `PrettyPrinter` são exatamente iguais aos `pprint()` argumentos padrão , exceto que você ignorou o primeiro parâmetro. Em `pprint()`, este é o objeto que você deseja imprimir.
+
+### Dessa forma, você pode ter várias predefinições de impressora - talvez algumas indo para fluxos diferentes - e chamá-las quando precisar delas.

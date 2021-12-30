@@ -2,6 +2,8 @@ import json
 from urllib import request
 from pprint import pprint
 from pprint import pp
+from pprint import PrettyPrinter
+
 
 response = request.urlopen("https://jsonplaceholder.typicode.com/users")
 
@@ -45,3 +47,18 @@ pprint(users[0], depth=1, sort_dicts=False)
 number_list = [123456789, 10000000000000]
 
 pprint(number_list, underscore_numbers=True)
+
+custom_printer = PrettyPrinter(
+    indent=4,
+    width=100,
+    depth=2,
+    compact=True,
+    sort_dicts=False,
+    underscore_numbers=True
+)
+
+custom_printer.pprint(users[0])
+
+number_list = [123456789, 10000000000000]
+
+custom_printer.pprint(number_list)
