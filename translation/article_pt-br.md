@@ -590,3 +590,34 @@ city: Gwenborough,
 ### `pformat()` é uma ferramenta que você pode usar para ficar entre a bela impressora e o fluxo de saída.
 
 ### Outro caso de uso para isso pode ser se você estiver [construindo uma API](https://realpython.com/api-integration-in-python/#rest-and-python-building-apis) e quiser enviar uma representação de string bonita da string JSON. Seus usuários finais provavelmente apreciariam isso!
+
+## Tratamento de estruturas de dados recursivas
+
+### O Python pprint() é recursivo, o que significa que imprimirá de maneira bonita todo o conteúdo de um dicionário, todo o conteúdo de qualquer dicionário filho e assim por diante.
+
+### Pergunte a si mesmo o que acontece quando uma função recursiva é executada em uma estrutura de dados recursiva. Imagine que você tenha um dicionário (A) e um dicionário (B):
+
+  ° `A` tem um atributo, `.link`, que aponta para `B`.
+  ° `B` tem um atributo, `.link`, que aponta para `A`.
+
+### Se sua função recursiva imaginária não tiver como lidar com essa referência circular, ela nunca terminará de imprimir! Ele iria imprimir `A` e então seu filho, `B`. Mas `B` também o fez `A` quando criança, por isso continuaria até o infinito.
+
+### Felizmente, tanto a função normal `print()` quanto a função `pprint()` lidam com isso normalmente:
+
+```python
+A = {}
+B = {"link": A}
+A["link"] = B
+
+print(A)
+# Output: {'link': {'link': {...}}}
+
+from pprint import pprint
+
+pprint(A)
+# Output: {'link': {'link': <Recursion on dict with id=3032338942464>}}
+```
+
+### Enquanto o regular do Python `print()` apenas abrevia a saída, `pprint()` o notifica explicitamente sobre a recursão e também adiciona o ID do dicionário.
+
+### Se quiser explorar por que essa estrutura é recursiva, você pode aprender mais sobre [passagem por referência](https://realpython.com/python-pass-by-reference/).

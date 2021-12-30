@@ -71,3 +71,10 @@ for char in chars_to_remove:
     address = address.replace(char, "")
 
 print(address)
+
+A = {}
+B = {"link": A}
+A["link"] = B
+
+print(A)
+pprint(A)
