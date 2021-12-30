@@ -444,3 +444,44 @@ with open("output.txt", mode="w") as file_object:
 ### Aqui, você cria um objeto de arquivo com [`open()`](https://docs.python.org/3/library/functions.html#open) e, em seguida, define o `stream` parâmetro `pprint()` para esse objeto de arquivo. Se você abrir o arquivo `output.txt`, verá que imprimiu bem tudos os `users` dele.
 
 ### Python tem seu próprio [módulo de registro](https://realpython.com/python-logging/). No entanto, você também pode usar `pprint()` para enviar saídas bonitas para arquivos e fazer com que funcionem como logs, se preferir.
+
+## Evitando a classificação do dicionário: sort_dicts
+
+### Embora os dicionários sejam geralmente considerados estruturas de dados não ordenadas, desde o Python 3.6, os [dicionários são ordenados por inserção](https://docs.python.org/3.6/whatsnew/3.6.html#new-dict-implementation).
+
+### `pprint()` ordena as chaves em ordem alfabética para impressão:
+
+```python
+pprint(users[0], depth=1)
+
+"""
+Output:
+
+{'address': {...},
+ 'company': {...},
+ 'email': 'Sincere@april.biz',
+ 'id': 1,
+ 'name': 'Leanne Graham',
+ 'phone': '1-770-736-8031 x56442',
+ 'username': 'Bret',
+ 'website': 'hildegard.org'}
+"""
+pprint(users[0], depth=1, sort_dicts=False)
+
+"""
+Output:
+
+{'id': 1,
+ 'name': 'Leanne Graham',
+ 'username': 'Bret',
+ 'email': 'Sincere@april.biz',
+ 'address': {...},
+ 'phone': '1-770-736-8031 x56442',
+ 'website': 'hildegard.org',
+ 'company': {...}}
+"""
+```
+
+### A menos que você defina `sort_dicts` como `False`, o Python `pprint()` classifica as chaves em ordem alfabética. Ele mantém a saída dos dicionários consistente, legível e - bem - bonita!
+
+### Quando `pprint()` foi implementado pela primeira vez, os dicionários eram desordenados. Sem ordenar as chaves em ordem alfabética, as chaves de um dicionário poderiam teoricamente diferir a cada impressão.

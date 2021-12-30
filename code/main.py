@@ -37,3 +37,7 @@ pprint(users, depth=1, width=40, compact=True)
 # OBS.: Para funcionar, você precisa de 1 arquivo formato .txt
 with open("output.txt", mode="w") as file_object:
     pprint(users, stream=file_object)
+
+pprint(users[0], depth=1)
+
+pprint(users[0], depth=1, sort_dicts=False)
