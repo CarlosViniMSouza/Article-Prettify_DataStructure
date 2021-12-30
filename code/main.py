@@ -3,6 +3,7 @@ from urllib import request
 from pprint import pprint
 from pprint import pp
 from pprint import PrettyPrinter
+from pprint import pformat
 
 
 response = request.urlopen("https://jsonplaceholder.typicode.com/users")
@@ -62,3 +63,11 @@ custom_printer.pprint(users[0])
 number_list = [123456789, 10000000000000]
 
 custom_printer.pprint(number_list)
+
+address = pformat(users[0]["address"])
+chars_to_remove = ["{", "}", "'"]
+
+for char in chars_to_remove:
+    address = address.replace(char, "")
+
+print(address)

@@ -558,3 +558,35 @@ custom_printer.pprint(number_list)
 ### Observe que os argumentos que você passou `PrettyPrinter` são exatamente iguais aos `pprint()` argumentos padrão , exceto que você ignorou o primeiro parâmetro. Em `pprint()`, este é o objeto que você deseja imprimir.
 
 ### Dessa forma, você pode ter várias predefinições de impressora - talvez algumas indo para fluxos diferentes - e chamá-las quando precisar delas.
+
+## Obtendo uma corda bonita com `pformat()`
+
+### E se você não quiser enviar a bela saída de `pprint()` para um fluxo? Talvez você queira fazer alguma correspondência de [regex](https://realpython.com/regex-python/) e substituir certas chaves. Para dicionários simples, você pode querer remover os colchetes e aspas para torná-los ainda mais legíveis.
+
+### O que quer que você queira fazer com a pré-saída da string, você pode obter a string usando [`pformat()`](https://docs.python.org/3/library/pprint.html#pprint.pformat):
+
+```python
+from pprint import pformat
+
+address = pformat(users[0]["address"])
+chars_to_remove = ["{", "}", "'"]
+
+for char in chars_to_remove:
+    address = address.replace(char, "")
+
+print(address)
+
+"""
+Output:
+
+city: Gwenborough,
+ geo: lat: -37.3159, lng: 81.1496,
+ street: Kulas Light,
+ suite: Apt. 556,
+ zipcode: 92998-3874
+"""
+```
+
+### `pformat()` é uma ferramenta que você pode usar para ficar entre a bela impressora e o fluxo de saída.
+
+### Outro caso de uso para isso pode ser se você estiver [construindo uma API](https://realpython.com/api-integration-in-python/#rest-and-python-building-apis) e quiser enviar uma representação de string bonita da string JSON. Seus usuários finais provavelmente apreciariam isso!
